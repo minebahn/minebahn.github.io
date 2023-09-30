@@ -29,13 +29,17 @@
                 Welcome to Minebahn
             </h1>
             <div class="btn btn-group">
-                <button class="btn btn-primary" name="minebahn.exaroton.me" onclick="document.getElementById('ip-success').classList.add('show'); navigator.clipboard.writeText(this.name); setTimeout(()=>{document.getElementById('ip-success').classList.remove('show');}, 4000);">
+                <button class="btn btn-primary" onclick="document.getElementById('ip-success').classList.add('show'); navigator.clipboard.writeText(this.name); setTimeout(()=>{document.getElementById('ip-success').classList.remove('show');}, 4000);">
                     <i class="bi bi-controller"></i>
                     Join
                 </button>
-                <button class="btn btn-success" name="minebahn.exaroton.me" onclick="document.getElementById('ip-success').classList.add('show'); navigator.clipboard.writeText(this.name); setTimeout(()=>{document.getElementById('ip-success').classList.remove('show');}, 4000);">
-                    <i class="bi bi-map"></i>
-                    System Map
+                <a href="/join" class="btn btn-success">
+                    <i class="bi bi-discord"></i>
+                    Discord
+                </a>
+                <button class="btn btn-danger">
+                    <i class="bi bi-pencil-fill"></i>
+                    Apply
                 </button>
             </div>
         </div>
