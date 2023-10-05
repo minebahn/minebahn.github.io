@@ -2,3 +2,4 @@ User-agent: *
 Allow: /assets
 Disallow: /assets/scripts
 Disallow: /apply_success.html
+Disallow: /panel
