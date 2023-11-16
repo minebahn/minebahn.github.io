@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minebahn - Status</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", async() => {
+            var info_currentstatus = document.getElementById("info-currentstatus");
+            var info_ind = document.getElementById("info-ind");
+
+            var info_ind_mcserver = document.getElementById("info-ind-mcserver");
+            var info_ind_dsbot = document.getElementById("info-ind-dsbot");
+            var info_ind_systemmap = document.getElementById("info-ind-systemmap");
+            var info_ind_squaremap = document.getElementById("info-ind-squaremap");
+            
+            fetch("/assets/data/status.json", {cache: "no-store"}).then((i) => {
+                i.json().then((j) => {
+                    if(j.status == "Operational") {
+                        info_currentstatus.innerHTML = `
+                            <div class="alert alert-success">All systems <b>Operational</b></div>
+                        `;
+                    } else if(j.status == "Maintenance") {
+                        info_currentstatus.innerHTML = `
+                            <div class="alert alert-dark">All or some systems are <b>Under maintenance</b></div>
+                        `;
+                    } else {
+                        info_currentstatus.innerHTML = `
+                            <div class="alert alert-danger">All or some systems are <b>Down</b></div>
+                        `;
+                    }
+
+                    if(j.services.mcserver.status == "Operational") {
+                        info_ind_mcserver.innerHTML = `
+                            <div class="alert alert-success">Minecraft Server<br>Service <b>Operational</b></div>
+                        `;
+                    } else if(j.services.mcserver.status == "Maintenance") {
+                        info_ind_mcserver.innerHTML = `
+                            <div class="alert alert-dark">Minecraft Server<br>Service <b>Under maintenance</b></div>
+                        `;
+                    } else {
+                        info_ind_mcserver.innerHTML = `
+                            <div class="alert alert-danger">Minecraft Server<br>Service <b>Down</b></div>
+                        `;
+                    }
+
+                    if(j.services.dsbot.status == "Operational") {
+                        info_ind_dsbot.innerHTML = `
+                            <div class="alert alert-success">Discord Bot<br>Service <b>Operational</b></div>
+                        `;
+                    } else if(j.services.dsbot.status == "Maintenance") {
+                        info_ind_dsbot.innerHTML = `
+                            <div class="alert alert-dark">Discord Bot<br>Service <b>Under maintenance</b></div>
+                        `;
+                    } else {
+                        info_ind_dsbot.innerHTML = `
+                            <div class="alert alert-danger">Discord Bot<br>Service <b>Down</b></div>
+                        `;
+                    }
+
+                    if(j.services.systemmap.status == "Operational") {
+                        info_ind_systemmap.innerHTML = `
+                            <div class="alert alert-success">Server System Map<br>Service <b>Operational</b></div>
+                        `;
+                    } else if(j.services.systemmap.status == "Maintenance") {
+                        info_ind_systemmap.innerHTML = `
+                            <div class="alert alert-dark">Server System Map<br>Service <b>Under maintenance</b></div>
+                        `;
+                    } else {
+                        info_ind_systemmap.innerHTML = `
+                            <div class="alert alert-danger">Server System Map<br>Service <b>Down</b></div>
+                        `;
+                    }
+
+                    if(j.services.squaremap.status == "Operational") {
+                        info_ind_squaremap.innerHTML = `
+                            <div class="alert alert-success">Server Squaremap<br>Service <b>Operational</b></div>
+                        `;
+                    } else if(j.services.squaremap.status == "Maintenance") {
+                        info_ind_squaremap.innerHTML = `
+                            <div class="alert alert-dark">Server Squaremap<br>Service <b>Under maintenance</b></div>
+                        `;
+                    } else {
+                        info_ind_squaremap.innerHTML = `
+                            <div class="alert alert-danger">Server Squaremap<br>Service <b>Down</b></div>
+                        `;
+                    }
+
+                    if(j.currentIncident.exists) {
+                        info_ind.innerHTML = `
+                        <div class="alert alert-warning">
+                            <span style="font-size:18pt;font-weight:bold;">Active Incident</span><br>
+                            <b>This is a <code>Level ${j.currentIncident.level}</code> incident</b><br>
+                            ${j.currentIncident.message}<br>
+                            <details>
+                                <summary>How do I read the incident level?</summary>
+                                Level 1: Low level incident, not important<br>
+                                level 5: 
+                            </details>
+                        </div>
+                        `;
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container-fluid bg-primary text-light p-5" style="text-align: center;">
+        <img src="/assets/images/minebahn_logo.png" style="width: 50vw; max-width: 150px;">
+        <br>
+        <br>
+        <h1>Minebahn Status</h1>
+    </div>
+    <div class="container-fluid bg-dark text-light p-2">
+        <h2>Current Status</h2>
+        <div id="info-currentstatus"></div>
+        <div id="info-ind"></div>
+        <h2>Individual Services Status</h2>
+        <div id="info-ind-mcserver"></div>
+        <div id="info-ind-dsbot"></div>
+        <div id="info-ind-systemmap"></div>
+        <div id="info-ind-squaremap"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{
+    "status": "Maintenance",
+    "currentIncident": {
+        "exists": true,
+        "level": 0,
+        "_LEVEL_READ_THIS": "MAX LEVEL IS 0-5",
+        "message": "Yes"
+    },
+    "services": {
+        "mcserver": {
+            "name": "Minecraft Server",
+            "status": "Operational"
+        },
+        "dsbot": {
+            "name": "Discord Bot",
+            "status": "Operational"
+        },
+        "systemmap": {
+            "name": "Server System Map",
+            "status": "Maintenance"
+        },
+        "squaremap": {
+            "name": "Server Square Map",
+            "status": "Maintenance"
+        }
+    }
+}
