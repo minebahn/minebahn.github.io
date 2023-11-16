@@ -1,7 +1,7 @@
 {
     "status": "Maintenance",
     "currentIncident": {
-        "exists": true,
+        "exists": false,
         "level": 0,
         "_LEVEL_READ_THIS": "MAX LEVEL IS 0-5",
         "message": "Yes"
