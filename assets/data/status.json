@@ -9,7 +9,7 @@
     "services": {
         "mcserver": {
             "name": "Minecraft Server",
-            "status": "Operational"
+            "status": "Maintenance"
         },
         "dsbot": {
             "name": "Discord Bot",
