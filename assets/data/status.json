@@ -1,15 +1,15 @@
 {
     "status": "Maintenance",
     "currentIncident": {
-        "exists": false,
-        "level": 0,
+        "exists": true,
+        "level": 5,
         "_LEVEL_READ_THIS": "MAX LEVEL IS 0-5",
-        "message": "Yes"
+        "message": "Whole server down for all users, errors LoginTimeout and stuck on Encrypting."
     },
     "services": {
         "mcserver": {
             "name": "Minecraft Server",
-            "status": "Operational"
+            "status": "Down"
         },
         "dsbot": {
             "name": "Discord Bot",
