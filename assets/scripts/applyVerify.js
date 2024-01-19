@@ -27,13 +27,46 @@ history.pushState({ dontsend: 1 }, "Application Verified", "?dontsend=1");
 
 document.querySelector(".eval-status").style.display = "block";
 
+let calculatedWay = [];
+
+function countLinks(str) {
+    return 0;
+}
+
+function removeLinks(str) {
+  
+	return str;
+}
+
 function autoEvaluate() {
     var score = 0;
 
-    score += why_choose_you.length * .2;
-    score += previous_experience.length * .3;
-    score += contributions.length * .1;
-    score += mtrmod_experience.length * .4;
+    score += removeLinks(why_choose_you).length * .2;
+	calculatedWay.push({
+		reason: "Question 1 length",
+		extra: removeLinks(why_choose_you.length) * .2
+	});
+    score += removeLinks(previous_experience).length * .3;
+	calculatedWay.push({
+		reason: "Question 2 length",
+		extra: removeLinks(previous_experience.length) * .3
+	});
+    score += removeLinks(contributions).length * .1;
+	calculatedWay.push({
+		reason: "Question 3 length",
+		extra: removeLinks(contributions.length) * .1
+	});
+    score += removeLinks(mtrmod_experience).length * .4;
+	calculatedWay.push({
+		reason: "Question 4 length",
+		extra: removeLinks(mtrmod_experience.length) * .4
+	});
+
+	score += countLinks(mtrmod_experience) * 3;
+	calculatedWay.push({
+		reason: "Question 4 links (not working, ignored)",
+		extra: countLinks(mtrmod_experience.length) * 3
+	});
 
     return score;
 }
@@ -44,6 +77,15 @@ document.querySelector(".eval-status").style.display = "none";
 document.querySelector(".eval-complete").style.display = "block";
 document.querySelector(".send-status").style.display = "block";
 
+let fieldsUnset = [];
+
+for(const singleField of calculatedWay) {
+	fieldsUnset.push({
+		name: singleField.reason,
+		value: `+ ${singleField.extra} points`
+	});
+}
+
 const webhook_data = {
     content: `<@&1157533001312387202>\n\n## Contact Information\nDiscord: ${contact_method}\nIGN: ${minecraft_username}\nCountry: ${country}\n\n## Questions\n\n### Why should we choose you over other applicants?\n${why_choose_you}\n\n### Do you have any previous experience? If so, then list it here!\n${previous_experience}\n\n### What contributions will you make to the server? Do you like building with other people, or making your own lines?\n${contributions}\n\n### How experienced are you with MTR mod? What have you built? Feel free to include image links to your builds!\n${mtrmod_experience}`,
     embeds: [
@@ -53,7 +95,8 @@ const webhook_data = {
         color: 44799,
         author: {
           name: "Auto Evaluation Score"
-        }
+        },
+		fields: fieldsUnset
       }
     ],
     attachments: [],
