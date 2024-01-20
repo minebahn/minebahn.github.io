@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minebahn - Panel - Gen</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <script src="/assets/scripts/modgen.js" defer></script>
+    <link rel="shortcut icon" href="/assets/images/minebahn_logo.png" type="image/png">
+</head>
+<body class="bg-dark text-light" style="overflow-y: scroll;">
+    <div class="container-fluid bg-primary text-light p-2 d-flex align-items-center" style="height: 75px;margin-bottom:1px;">
+        <a href="/" class="btn btn-dark" style="margin-right: 15px;">
+            <i class="bi bi-arrow-left"></i>
+            Back
+        </a>
+        <span style="font-size:16pt;font-weight: bold;margin-right: 15px;">Minebahn Panel - Modpack</span>
+    </div>
+    <div class="container-fluid bg-primary text-light p-2 d-flex align-items-center mb-3">
+        <a href="/panel" class="btn btn-dark" style="margin-right: 15px;">
+            Panel Home
+        </a>
+        <a href="/panel/modpack.html" class="btn btn-dark" style="margin-right: 15px;">
+            Modpack
+        </a>
+        <a href="/panel/resourcepack.html" class="btn btn-dark" style="margin-right: 15px;">
+            Resource Pack
+        </a>
+        <a href="/panel/modgen.html" class="btn btn-warning" style="margin-right: 15px;">
+            Modpack Generator
+        </a>
+        <a href="#howto" class="btn btn-success" data-bs-toggle="collapse" style="margin-right: 15px;">
+            How to get a version/project/file id
+        </a>
+    </div>
+    <div class="container-fluid p-2">
+        <div class="container">
+            <div class="container-fluid bg-light text-dark collapse" id="howto" style="border-radius: 1em; text-align: center;">
+                <h3>HOW TO GET A VERSION/PROJECT/FILE ID</h3>
+                <b>Modrinth</b>:<br>
+                Version ID is located in the "Metadata" section of the VERSION page.<br>
+                <img src="/assets/images/help/Modrinth_ID.png"><br>
+                <b>Curseforge PROJECT ID</b>:<br>
+                Project ID is located in the "About" section of the main project page.<br>
+                <img src="/assets/images/help/CF_Project.png"><br>
+                <b>Curseforge FILE ID</b>:<br>
+                File ID is in the last part of the file URL:<br>
+                https://www.curseforge.com/minecraft/mc-mods/create/files/<span class="text-light bg-success">4835191</span><br>
+            </div>
+            <br>
+            <div class="container-fluid bg-light text-dark collapse" id="exportprod" style="border-radius: 1em; text-align: center;">
+                <h3>Export for production</h3>
+                Before exporting, confirm that you have <span class="bg-danger text-light">REFRESHED MODS</span> using the button and that all mods have finished refreshing.<br>
+                <br>
+                <div class="input-group">
+                    <input id="exportname" type="text" class="form-control bg-dark text-light" value="Unnamed Modpack Version (Edit)">
+                    <span class="input-group-text bg-dark">
+                        <button class="btn btn-success" onclick="exportProd();">Export modlist</button>
+                    </span>
+                </div>
+                <br>
+                <br>
+                <textarea id="exporttextarea" cols="100" rows="10" placeholder="Exported modlist will show here"></textarea>
+            </div>
+            <br>
+            <div class="container-fluid bg-light text-dark" style="border-radius: 1em; text-align: center;">
+                <b>CONTROLS</b><br>
+                Ignore how part of the website is unaligned, bootstrap wouldn't let me and I'm too lazy to fix it. And since this isn't for production, idrc.
+                <div class="container-fluid d-flex p-2 justify-content-center">
+                    <a href="#" class="btn btn-primary" onclick="refreshMods();">
+                        <i class="bi bi-arrow-clockwise"></i>
+                        Refresh Mods
+                    </a>
+                    &nbsp;
+                    <a href="#" class="btn btn-primary" onclick="addMod();">
+                        <i class="bi bi-plus"></i>
+                        Add mod
+                    </a>
+                    &nbsp;
+                    <a href="#" class="btn btn-primary" onclick="clearAll();">
+                        <i class="bi bi-eraser"></i>
+                        Clear all
+                    </a>
+                    &nbsp;
+                    <a href="#" class="btn btn-primary" onclick="saveLocal();">
+                        <i class="bi bi-floppy"></i>
+                        Save local progress
+                    </a>
+                    &nbsp;
+                    <a href="#exportprod" class="btn btn-primary" data-bs-toggle="collapse">
+                        <i class="bi bi-window"></i>
+                        Export for production
+                    </a>
+                </div>
+            </div>
+            <br>
+            <div class="container-fluid" id="modFields">
+                
+            </div>
+        </div>      
+    </div>
+</body>
+</html>
