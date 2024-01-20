@@ -9,10 +9,10 @@ const defaultModField = html`
                 <option value="curseforge">Curseforge</option>
             </select>
         </span>
-        <input id="modpvid" type="text" class="form-control" placeholder="Version ID">
-        <input id="cfmodfileid" type="text" class="form-control" placeholder="CF File ID" style="display:none;">
+        <input id="modpvid" type="text" class="form-control" placeholder="Version ID" onkeyup="this.setAttribute('value', this.value);">
+        <input id="cfmodfileid" type="text" class="form-control" placeholder="CF File ID" style="display:none;" onkeyup="this.setAttribute('value', this.value);">
         <span class="input-group-text" id="versionSpan">
-            <b>Unknown Mod</b>&nbsp;Unknown Version
+            <b>Unknown Mod</b>&nbsp;Ignored by system
         </span>
     </div>
 </div>
@@ -58,7 +58,7 @@ function refreshMods() {
         if(provider == "modrinth") {
             fetch(`https://api.modrinth.com/v2/version/${modPVid}`).then((res) => {
                 if(!res.ok) {
-                    modVersionSpan.innerHTML = "<b>Unknown Mod</b>&nbsp;Unknown Version";
+                    modVersionSpan.innerHTML = "<b>Unknown Mod</b>&nbsp;Ignored by system";
                 } else {
                     res.json().then((json) => {
                         modVersionSpan.innerHTML = `<b>${json.name}</b>&nbsp;${json.version_number}`;
@@ -69,7 +69,7 @@ function refreshMods() {
         } else {
             fetch(`https://api.curseforge.com/v1/mods/${modPVid}/files/${modFIid}`, { headers: { "x-api-key": curseforge_api_key, "content-type": "application/json" }}).then((res) => {
                 if(!res.ok) {
-                    modVersionSpan.innerHTML = "<b>Unknown Mod</b>&nbsp;Unknown Version";
+                    modVersionSpan.innerHTML = "<b>Unknown Mod</b>&nbsp;Ignored by system";
                 } else {
                     res.json().then((json) => {
                         modVersionSpan.innerHTML = `<b>${json.data.displayName}</b>&nbsp;Curseforge`;
