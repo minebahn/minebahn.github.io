@@ -9,10 +9,36 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="shortcut icon" href="/assets/images/minebahn_logo.png" type="image/png">
 
 </head>
 <body class="bg-dark text-light">
+
+    <div class="modal fade" id="applicationWarningModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+      
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title text-dark">Applications are currently closed. Please check back later.</h4>
+                </div>
+      
+                <!-- Modal body -->
+                <div class="modal-body text-dark">
+                    Check the Minebahn discord server for more information.
+                </div>
+      
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <a href="https://discord.com/channels/1114731926675275856/1115427084811116635" class="btn btn-primary">#announcements</a>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
     <div class="container-fluid bg-primary text-light p-2 d-flex align-items-center mb-3" style="height: 75px;">
         <a href="/" class="btn btn-dark" style="margin-right: 15px;">
             <i class="bi bi-arrow-left"></i>
@@ -320,11 +346,16 @@
             Make sure to reread your answers!<br>
             When you are ready to submit your application, click the button below. A Minebahn staff member will check your application.<br>
             <br>
-            <input type="button" onclick="submitForm();" value="Submit application" class="btn btn-primary">
+            <input type="button" onclick="submitForm();" value="Submit application" class="btn btn-danger" disabled><!--Change to PRIMARY when not closed-->
         </div>
     </form>
 
     <script defer>
+        // COMMENT OUT IF APPS OPEN
+        $(window).on('load', function() {
+            $('#applicationWarningModal').modal('show');
+        });
+
         function submitForm() {
             var form = document.getElementById("mainForm");
             var formData = new FormData(form);
