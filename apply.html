@@ -346,15 +346,15 @@
             Make sure to reread your answers!<br>
             When you are ready to submit your application, click the button below. A Minebahn staff member will check your application.<br>
             <br>
-            <input type="button" onclick="submitForm();" value="Submit application" class="btn btn-danger" disabled><!--Change to PRIMARY when not closed-->
+            <input type="button" onclick="submitForm();" value="Submit application" class="btn btn-primary"><!--Change to PRIMARY when not closed-->
         </div>
     </form>
 
     <script defer>
         // COMMENT OUT IF APPS OPEN
-        $(window).on('load', function() {
+        /* $(window).on('load', function() {
             $('#applicationWarningModal').modal('show');
-        });
+        }); */
 
         function submitForm() {
             var form = document.getElementById("mainForm");
