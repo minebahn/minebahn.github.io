@@ -1,1 +1,1 @@
-https://minebahnrsu.onrender.com/
+https://cdn.jsdelivr.net/gh/minebahn/minebahn.github.io@latest/
